@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+</head>
+<body>
+  <h4>TensorFlow Layers</h4>
+
+  <script>
+    // crear modelo
+    const model = tf.sequential();
+
+    // capa oculta
+    const hidden = tf.layers.dense({
+      units: 4,
+      inputShape: [2],
+      activation: 'sigmoid'
+    });
+    model.add(hidden);
+
+    // capa salida
+    const out = tf.layers.dense({
+      units: 1,
+      activation: 'sigmoid'
+    });
+    model.add(out);
+
+    // optimizador (gradient descent)
+    const sgd = tf.train.sgd(0.1);
+
+    model.compile({
+      optimizer: sgd,
+      loss: tf.losses.meanSquaredError
+    });
+
+    const x1 = tf.tensor2d([
+      [0, 0],
+      [0.2, 0.2],
+      [0.4, 0.4]
+    ]);
+    const x2 = tf.tensor2d([
+      [0.1],
+      [0.3],
+      [0.5]
+    ]);
+
+    async function trying () {
+      for (let i = 0; i < 500; i++) {
+        const res = await model.fit(x1,x2,{shuffle:true, epochs:100});
+        
+      }
+    }
+
+    trying().then(() => {
+      const s = model.predict(x1);
+      s.print();
+    });
+
+  </script>
+</body>
+</html>

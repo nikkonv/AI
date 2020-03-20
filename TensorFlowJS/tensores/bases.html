@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Primer ejemplo TFJS</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+</head>
+<body>
+  <h4>tensorflow JS</h4>
+  
+  <script>
+    // tf.tensor([1,2,3,4]).print();
+    // console.log(tf.tensor([1,2,3,4]));
+    // console.log(tf.tensor([[1,2], [3,4]]));
+    // tf.tensor([1.5, 2, 3, 4], [2, 2], dtype='int32').print();
+
+    // console.log('//////////////////////////////////');
+
+    // const val = [];
+    // for (let i = 0; i < 30; i++) {
+    //   val[i] = Math.random(1,100)*100;
+    // }
+
+    // const tens = tf.tensor3d(val, [5,3,2], 'int32');
+    // tens.print();
+    // // no se puede acceder a data inmediatamente porque esta en gpu, then es un callback
+    
+    // tens.data().then(function(res){
+    //   console.log('data');
+    //   console.log(res);
+    // });
+
+    // // dataSync hace lo mismo pero no tiene una fucion
+    // console.log('datasync');
+    // console.log(tens.dataSync());
+
+    // // indexacion
+    // console.log('index');
+    // console.log(tens.dataSync()[2]);
+
+    // los tensores son estaticos, para que sean variables
+    /*
+    const x = tf.variable(tf.tensor([1,2,3]));
+    x.print();
+    x.assign(tf.tensor([4,5,6]));
+    x.print();
+    */
+      
+    // multiplicacion de matrices
+    const a = tf.tensor2d([[1,2,-3], [4,0,-2]]);
+    const b = tf.tensor2d([[3,1], [2,4], [-1,5]]);
+
+    tf.matMul(a,b).print();
+
+  </script>
+
+
+  
+</body>
+</html>
